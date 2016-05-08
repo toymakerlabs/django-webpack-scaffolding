@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles%}
+
+{% block content %}
+
+{{text}}
+{%endblock%}
+
+
+{% block extra_js_before%}
+<script src="{% static 'js/someother.js'%}"></script>
+{%endblock%}

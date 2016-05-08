@@ -1,0 +1,35 @@
+from {{ project_name }}.settings_common import *
+import os
+
+
+########## DEBUG CONFIGURATION
+DEBUG = False
+########## END DEBUG CONFIGURATION
+
+
+########## EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+########## END EMAIL CONFIGURATION
+
+# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
+#POSTGRES example. Be sure to install: pip install psycopg2
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myproject',
+        'USER': 'myprojectuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+########## END DATABASE CONFIGURATION
+
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+
+
+STATIC_URL = '/static/'
+
+
+MEDIA_URL = '/var/www/media/'
