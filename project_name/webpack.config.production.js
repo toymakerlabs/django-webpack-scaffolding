@@ -23,7 +23,7 @@ config.plugins = config.plugins.concat([
 
 config.module.loaders.push(
   { test: /\.css$/,  loader: ExtractTextPlugin.extract('style-loader', 'css-loader')},
-  { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!sass-loader") },
+  { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader") },
   { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' }
 )
 

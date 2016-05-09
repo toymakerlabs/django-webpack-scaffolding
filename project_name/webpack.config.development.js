@@ -35,7 +35,7 @@ config.module.loaders.push(
   {test: /\.css$/, loader: "style-loader!css-loader?root=."},
 
   //sass
-  { test: /\.scss$/, loader: "style!css!autoprefixer!sass" }
+  { test: /\.scss$/, loader: "style!css!postcss-loader!sass" }
 
 )
 

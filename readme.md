@@ -123,7 +123,7 @@ cd projectname
 pip install django==1.9.6
 
 4. start new project from the template
-django-admin startproject projectname --template=/Users/jfaithorn/projects/django/django-webpack-scaffolding --name=package.json 
+django-admin startproject projectname --template=/Users/jfaithorn/projects/django/django-webpack-scaffolding --extension=js,json
 
 5. install django dependencies
 cd projectname
