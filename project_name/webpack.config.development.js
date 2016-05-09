@@ -12,7 +12,7 @@ var config = require('./webpack.config.base.js')
 // Use webpack dev server
 config.entry = [
   'webpack-dev-server/client?http://localhost:3000',
-  './static_src/js/index'
+  '../static_src/js/index'
 ]
 
 // override django's STATIC_URL for webpack bundles
