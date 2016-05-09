@@ -7,8 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "build": "webpack --config {{ project_name }}/webpack.config.development.js --progress --colors",
-    "build-production": "webpack --config {{ project_name }}/webpack.config.production.js --progress --colors",
+    "build": "webpack --config {{ project_name }}/config/webpack.config.development.js --progress --colors",
+    "build-production": "webpack --config {{ project_name }}/config/webpack.config.production.js --progress --colors",
     "watch": "node server.js"
   },
   "author": "",

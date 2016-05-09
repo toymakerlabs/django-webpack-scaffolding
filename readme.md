@@ -131,7 +131,7 @@ pip install -r requirements.txt
 
 6. point virtualenv activate script to project settings
 add this line to ../bin/activate
-DJANGO_SETTINGS_MODULE="projectname.settings_development"
+DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
 export DJANGO_SETTINGS_MODULE
 
 (change this on your production server to point to the production settings file)
@@ -188,7 +188,7 @@ now you can deploy to production.
 Troubleshooting
 if you get an error when installing "could not activate xxx settings module"
 set the settings module var in ./bin/activate to a blank string, open an new terminal, activate again, install, then close, then change
-DJANGO_SETTINGS_MODULE="projectname.settings_development"
+DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
 export DJANGO_SETTINGS_MODULE
 
 then reactivate

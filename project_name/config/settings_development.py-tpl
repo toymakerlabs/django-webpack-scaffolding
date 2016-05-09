@@ -1,4 +1,4 @@
-from {{ project_name }}.settings_common import *
+from {{ project_name }}.config.settings_common import *
 import os
 
 
