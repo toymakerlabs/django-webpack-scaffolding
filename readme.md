@@ -1,195 +1,134 @@
-####Installation
-* make sure you have python3 and virtualenv and pip
-* download from github
-* put in ~/virtualenvs/
-* cd into the folder
+##About
+##Quickstart
+Webpack is an immensely useful tool for front end projects. I've created project template for integrating webpack into your front end toolkit. 
 
+We're committing everything to Git, so all developers will have access to the entire project. We just need to make a change to the environment for production and off we go. 
 
-run pip install -r /path/to/requirements.txt
+######Getting Started
+Webpack requires NodeJS. We're not actually serving our project from Node, but we're using it to run a dev server, and to bundle and minify our static JS and CSS. Technically, we don't need node on our production server since we're building locally and following Django's normal *collectstatic* process.
 
+But for your dev environment, verify that you have Node, npm, and virtualenv installed.
 
-rename earlgrey to scaffolding.
+`node -v`
+should yield > v4.2.2
+`npm -v`
+should yield > 2.14.7
+`virtualenv --version`
+should yeild > 13.1.0
 
+[Node installation](https://docs.npmjs.com/getting-started/installing-node)  
+[Virtualenv installation (OSX)](http://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
 
-standard directory for django static files
-static/
+###### Create a New Virtualenv
+For Django 1.9 we're going to use Python 3. 
+```language-bash
+virtualenv -p python3 projectname && cd    projectname
+```
 
-webpack bundles dev scripts to 
-static_src/
-webpack-dev-server serves these locally during development.
-I've purposefully left these out of the static files dirs so that when you run collectstatic it keeps bundles/ and js/ css/ out of the production static folder. 
+Activate the virtualenv using the command:
+`source bin/activate`
 
-
-##
-Build this into a startproject template
-
-https://github.com/django/django/blob/master/django/conf/project_template/project_name/settings.py-tpl
-
-replace the appname with {{}}
-https://docs.djangoproject.com/en/1.8/ref/django-admin/#startproject-projectname-destination
-
-
-
-
-
-
-
-0. install node
-0.1 install npm
-
-1. new virtualenv
-virtualenv -p python3 projectname
-
-2. cd into the new virtualenv
-cd projectname
-
-3. install django
+######Install Django
+First install Django so that we can use *django-admin.*
+```language-bash
 pip install django==1.9.6
+```
 
-4. start new project from the template
-django-admin startproject projectname --template=/Users/jfaithorn/projects/django/django-webpack-scaffolding --extension=js,json
+######Run Startproject
+The [==startproject==](https://docs.djangoproject.com/en/1.9/ref/django-admin/#startproject) command accepts a parameter called *template* that will create the project from my template in Git. Replace **projectname** in the command with the name of your project. ( We're still in the same virtualenv folder .)
 
-5. install django dependencies
+```language-bash
+django-admin startproject projectname --template=https://github.com/toymakerlabs/django-webpack-scaffolding.zip --extension=js,json
+```
+
+
+######Install Django Dependencies
+Now we need to install Django dependencies. ([==django-webpack-loader==](https://github.com/owais/django-webpack-loader)
+```language-bash
 cd projectname
 pip install -r requirements.txt
+```
 
-6. point virtualenv activate script to project settings
-add this line to ../bin/activate
-DJANGO_SETTINGS_MODULE="projectname.settings_development"
-export DJANGO_SETTINGS_MODULE
+######Update the Virtualenv Activate Script
+Set the Django settings module in bin/activate.
 
-(change this on your production server to point to the production settings file)
+Open *../bin/activate* in your editor of choice and paste the following at the bottom of your file (change *projectname* to the name of your project)
 
-6. install node dependencies
-npm install
-(you might have to run as sudo)
-
-
-7. do an inital webpack build
-npm run build
-//this should make an inital bundle of your js and a js map file in static_src/bundles/
-
-
-to start developing, open up another terminal window and cd to your projet directory
-npm run watch 
-//this will start a node js server instance and watch your front end files for changes
-//webpack will automatically build when changes occur
-
-
-migrate the db first to create an initial migration
-python manage.py migrate
-
-
-
-test the django dev server
-python manage.py runserver
-
-you should see a lovely, shiny new instance of your webpack front ent
-
-
-
-when you're ready to test your production build:
-0 turn off the webpack dev server with ^c
-1. set debug to false in your settings
-2. npm run build-production
-
-this will copy the css/js bundles to static/dist
-now django's traditional static files will serve the production bundles
-
-check it by running 
-python manage.py runserver
-
-prior to deployment
-python manage.py collectstatic
-this will copy all of your static files over to /staticfiles.
-
-now you can deploy to production.
-
-
-
-
-
-
-0. install node
-0.1 install npm
-
-1. new virtualenv
-virtualenv -p python3 projectname
-
-2. cd into the new virtualenv
-cd projectname
-
-3. install django
-pip install django==1.9.6
-
-4. start new project from the template
-django-admin startproject projectname --template=/Users/jfaithorn/projects/django/django-webpack-scaffolding --extension=js,json
-
-5. install django dependencies
-cd projectname
-pip install -r requirements.txt
-
-6. point virtualenv activate script to project settings
-add this line to ../bin/activate
+```language-bash
 DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
 export DJANGO_SETTINGS_MODULE
+```
 
-(change this on your production server to point to the production settings file)
+Then activate the environment again to apply the settings module change. From the django project folder:
 
-6. install node dependencies
+```language-bash
+source ../bin/activate
+```
+**Tip:**
+Verify the value of DJANGO_SETTINGS_MODULE by echoing it in the terminal:`echo $DJANGO_SETTINGS_MODULE`. It should print: *projectname.config.settings_development*
+
+
+######Install Node Dependencies
+Now we need to install Webpack and Webpack's supporting from *package.json*.
+
+
+```language-bash
 npm install
-(you might have to run as sudo)
+```
+
+######Create an Initial Bundle
+Test our config. Autocreates `./webpack-stats.json`
 
 
-7. do an inital webpack build
+```language-bash
 npm run build
-//this should make an inital bundle of your js and a js map file in static_src/bundles/
+```
 
 
-to start developing, open up another terminal window and cd to your projet directory
-npm run watch 
-//this will start a node js server instance and watch your front end files for changes
-//webpack will automatically build when changes occur
+######Start Webpack
 
+```language-bash
+npm run watch
+```
+The terminal should output a few messages, the first should let you know that the dev server is running on **0.0.0.0:3000** 
 
-migrate the db first to create an initial migration
+ 
+
+######Run the Django Development Server
+We need Webpack Dev Server to keep running for it to serve our static files. So open up a new terminal window and activate the environment
+```language-bash
+source ../bin/activate
+```
+Create an initial migration.
+```language-bash
 python manage.py migrate
+```
+Run the dev server
 
-
-
-test the django dev server
+```language-bash
 python manage.py runserver
-
-you should see a lovely, shiny new instance of your webpack front ent
-
+```
 
 
-when you're ready to test your production build:
-0 turn off the webpack dev server with ^c
-1. set debug to false in your settings
-2. npm run build-production
+######Check it in the browser
+Open your browser and paste:http://127.0.0.1:8000/
 
-this will copy the css/js bundles to static/dist
-now django's traditional static files will serve the production bundles
+######Build a Production Version
+Create a production ready bundle by running:
+```language-bash
+npm run build-production
+```
 
-check it by running 
-python manage.py runserver
 
-prior to deployment
-python manage.py collectstatic
-this will copy all of your static files over to /staticfiles.
+######Workflow Overview
 
-now you can deploy to production.
+1. Start the node dev server by running `npm run watch`
+2. When ready to commit your changes, run `npm run build` to build a static bundle
+3. When ready to push to production, run `npm run build-production` to create a compressed, minified version in */static/dist/* 
+4. Push to production and run `python manage.py collectstatic` to apply the changes to the static files
 
 
 
 
 
-Troubleshooting
-if you get an error when installing "could not activate xxx settings module"
-set the settings module var in ./bin/activate to a blank string, open an new terminal, activate again, install, then close, then change
-DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
-export DJANGO_SETTINGS_MODULE
-
-then reactivate
 
