@@ -9,7 +9,7 @@ django-admin startproject projectname --template=https://github.com/toymakerlabs
 
 For more information on Webpack and Webpack with Django, check out these links below:
 * [What is Webpack](http://webpack.github.io/docs/what-is-webpack.html): An overview of Webpack
-* [Webpack with Django](http://owaislone.org/blog/webpack-plus-reactjs-and-django/)by Owais Lone. A detailed overview of the nuts-and-bolts of using Django with Webpack.
+* [Webpack with Django](http://owaislone.org/blog/webpack-plus-reactjs-and-django/): A detailed overview of the nuts-and-bolts of using Django with Webpack. By Owais Lone.
 
 
 If you don't have Django set up yet, follow along with the quick setup guide below, or head to my blog post for a more detailed overview.
