@@ -7,7 +7,12 @@ If you already have a virtualenv with django ready, you can use the Django admin
 django-admin startproject projectname --template=https://github.com/toymakerlabs/django-webpack-scaffolding.zip --extension=js,json
 ```
 
-If you don't have a virtualenv, follow along, we'll set one up! 
+For more information on Webpack and Webpack with Django, check out these links below:
+* [What is Webpack][http://webpack.github.io/docs/what-is-webpack.html]
+* A detailed overview of the nuts-and-bolts of [Django and Webpack](http://owaislone.org/blog/webpack-plus-reactjs-and-django/] by Owais Lone.
+
+
+If you don't have Django set up yet, follow along with the quick setup guide below, or head to my blog post for a more detailed overview.
 
 ###Setting up the Development Environment
 Webpack requires NodeJS. We're not actually serving our project from Node, but we're using it to run a dev server, and to bundle and minify our static JS and CSS. Technically, we don't need node on our production server since we're building locally and following Django's normal *collectstatic* process.
