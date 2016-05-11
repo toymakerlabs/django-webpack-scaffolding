@@ -7,7 +7,5 @@
 __pycache__/
 pip-log.txt
 pip-delete-this-directory.txt
-bundles/
 node_modules/
-webpack-stats.json
-webpack-stats-production.json
+staticfiles/

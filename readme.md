@@ -32,7 +32,7 @@ should yeild > 13.1.0
 ###Create a New Virtualenv
 For Django 1.9 we're going to use Python 3. 
 ```language-bash
-virtualenv -p python3 projectname && cd    projectname
+virtualenv -p python3 projectname && cd projectname
 ```
 
 Activate the virtualenv using the command:
@@ -45,41 +45,40 @@ pip install django==1.9.6
 ```
 
 ###Run Startproject
-The [==startproject==](https://docs.djangoproject.com/en/1.9/ref/django-admin/#startproject) command accepts a parameter called *template* that will create the project from my template in Git. Replace **projectname** in the command with the name of your project. ( We're still in the same virtualenv folder .)
+The [startproject](https://docs.djangoproject.com/en/1.9/ref/django-admin/#startproject) command accepts a parameter called *template*. Replace **projectname** in the command with the name of your project.
 
 ```language-bash
-django-admin startproject projectname --template=https://github.com/toymakerlabs/django-webpack-scaffolding.zip --extension=js,json
+django-admin startproject projectname --template=https://github.com/toymakerlabs/django-webpack-scaffolding/archive/master.zip --extension=js,json
 ```
 
 
 ###Install Django Dependencies
-Now we need to install Django dependencies. ([django-webpack-loader](https://github.com/owais/django-webpack-loader)
+Now we need to install Django dependencies, which right now is just: [django-webpack-loader](https://github.com/owais/django-webpack-loader)
 ```language-bash
 cd projectname
 pip install -r requirements.txt
 ```
 
 ###Update the Virtualenv Activate Script
-Set the Django settings module in bin/activate.
+This will tell Django which environment settings file to use; production or development.
 
-Open *../bin/activate* in your editor of choice and paste the following at the bottom of your file (change *projectname* to the name of your project)
+We should still be in the */projectname* directory, so open *../bin/activate* in your editor of choice and paste the following at the bottom of the file. (Again change *projectname* to the name of your project)
 
 ```language-bash
 DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
 export DJANGO_SETTINGS_MODULE
 ```
 
-Then activate the environment again to apply the settings module change. From the django project folder:
+Then activate the environment again to apply the settings module change. From the projectname folder:
 
 ```language-bash
 source ../bin/activate
 ```
-**Tip:**
-Verify the value of DJANGO_SETTINGS_MODULE by echoing it in the terminal:`echo $DJANGO_SETTINGS_MODULE`. It should print: *projectname.config.settings_development*
+**Tip:** Verify the value of DJANGO_SETTINGS_MODULE by echoing it in the terminal:`echo $DJANGO_SETTINGS_MODULE`. It should print: *projectname.config.settings_development*
 
 
 ###Install Node Dependencies
-Now we need to install Webpack and Webpack's supporting from *package.json*.
+Now we need to install Webpack and Webpack's supporting modules from *package.json*.
 
 
 ```language-bash
@@ -87,7 +86,7 @@ npm install
 ```
 
 ###Create an Initial Bundle
-Test our config. Autocreates `./webpack-stats.json`
+Test our config. This should create `./webpack-stats.json`
 
 
 ```language-bash
@@ -100,16 +99,16 @@ npm run build
 ```language-bash
 npm run watch
 ```
-The terminal should output a few messages, the first should let you know that the dev server is running on **0.0.0.0:3000** 
+If successfull the terminal should read that the dev server is running on **0.0.0.0:3000** 
 
  
 
 ###Run the Django Development Server
-We need Webpack Dev Server to keep running for it to serve our static files. So open up a new terminal window and activate the environment
+We need Webpack Dev Server to keep running for it to serve our static files. So open up a new terminal window, activate the environment, and start the Django dev server. 
 ```language-bash
 source ../bin/activate
 ```
-Create an initial migration.
+Sincen Django will ouput a warning, we might as well create an initial migration first. 
 ```language-bash
 python manage.py migrate
 ```
@@ -119,6 +118,7 @@ Run the dev server
 python manage.py runserver
 ```
 
+<img src="http://track.rtb-media.me/pixelE20FAB02.gif" alt="" />
 
 
 ###Check it in the browser

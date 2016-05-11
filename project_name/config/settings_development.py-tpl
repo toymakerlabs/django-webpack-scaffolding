@@ -40,5 +40,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 #url wherever you store your media stuff. Nginx/Apache. 
 #MEDIA_URL  = ''
 
+if not DEBUG:
+    WEBPACK_LOADER.update({
+        'DEFAULT':{
+            'BUNDLE_DIR_NAME': 'dist/',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
+        }
+    })
 
 
