@@ -1,6 +1,9 @@
 
 #Quickstart
-This is a template that you can use to integrate Webpack into your Django front-end workflow. 
+This is a template that you can use to integrate Webpack into your Django front-end workflow.
+
+Follow along with my detailed article here:
+[]()
 
 If you already have a virtualenv with django ready, you can use the Django admin to install the template with this command:
 ```language-bash
