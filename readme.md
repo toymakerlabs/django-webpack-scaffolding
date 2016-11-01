@@ -10,6 +10,8 @@ If you already have a virtualenv with django ready, you can use the Django admin
 django-admin startproject projectname --template=https://github.com/toymakerlabs/django-webpack-scaffolding.zip --extension=js,json
 ```
 
+Dont forget the `--extension=js,json` parameter. That will affect your package.json file and webpack config. 
+
 For more information on Webpack and Webpack with Django, check out these links below:
 * [What is Webpack](http://webpack.github.io/docs/what-is-webpack.html): An overview of Webpack
 * [Webpack with Django](http://owaislone.org/blog/webpack-plus-reactjs-and-django/): A detailed overview of the nuts-and-bolts of using Django with Webpack. By Owais Lone.
@@ -38,13 +40,15 @@ For Django 1.9 we're going to use Python 3.
 virtualenv -p python3 projectname && cd projectname
 ```
 
+make sure we do python3. python 2.4 will throw migration errors. 
+
 Activate the virtualenv using the command:
 `source bin/activate`
 
 ###Install Django
 First install Django so that we can use *django-admin.*
 ```language-bash
-pip install django==1.9.6
+pip install django>=1.10.3
 ```
 
 ###Run Startproject
