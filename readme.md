@@ -48,7 +48,7 @@ Activate the virtualenv using the command:
 ###Install Django
 First install Django so that we can use *django-admin.*
 ```language-bash
-pip install django>=1.10.3
+pip install django
 ```
 
 ###Run Startproject
