@@ -71,6 +71,7 @@ We should still be in the */projectname* directory, so open *../bin/activate* in
 
 ```language-bash
 vim ../bin/activate
+GG
 ```
 
 ```language-bash
