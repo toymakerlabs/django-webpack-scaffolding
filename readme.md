@@ -1,9 +1,40 @@
 
 #Quickstart
-This is a template that you can use to integrate Webpack into your Django front-end workflow.
+This is a template that you can use to integrate Webpack into your Django front-end workflow. [http://blog.toymakerlabs.com/getting-started-with-webpack-and-django/](See my article for more details)
 
-Follow along with my detailed article here:
-[]()
+
+###Development Environment Overview
+Webpack requires NodeJS. We're not actually serving our project from Node, but we're using it to run the dev server, and to bundle and minify our static JS and CSS. Technically, we don't need node on our production server since we're building locally and following Django's normal *collectstatic* process.
+
+Let's verify that we have Node, npm, and virtualenv installed.
+
+`node -v`
+should yield > v4.2.2
+`npm -v`
+should yield > 2.14.7
+`virtualenv --version`
+should yeild > 13.1.0
+
+[Node installation](https://docs.npmjs.com/getting-started/installing-node)  
+[Virtualenv installation (OSX)](http://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
+
+
+
+###Start by creating a new Virtualenv
+For Django 1.9 and above we're going to use Python 3. Make sure to use python3, python 2.4 will throw errors when you run an initial migration. 
+ 
+```language-bash
+virtualenv -p python3 projectname && cd projectname
+```
+
+Activate the virtualenv using the command:
+`source bin/activate`
+
+###Install Django
+Install Django so that we can use the *django-admin.*
+```language-bash
+pip install django
+```
 
 If you already have a virtualenv with django ready, you can use the Django admin to install the template with this command:
 ```language-bash
@@ -17,39 +48,6 @@ For more information on Webpack and Webpack with Django, check out these links b
 * [Webpack with Django](http://owaislone.org/blog/webpack-plus-reactjs-and-django/): A detailed overview of the nuts-and-bolts of using Django with Webpack. By Owais Lone.
 
 
-If you don't have Django set up yet, follow along with the quick setup guide below, or head to my blog post for a more detailed overview.
-
-###Setting up the Development Environment
-Webpack requires NodeJS. We're not actually serving our project from Node, but we're using it to run a dev server, and to bundle and minify our static JS and CSS. Technically, we don't need node on our production server since we're building locally and following Django's normal *collectstatic* process.
-
-But for your dev environment, verify that you have Node, npm, and virtualenv installed.
-
-`node -v`
-should yield > v4.2.2
-`npm -v`
-should yield > 2.14.7
-`virtualenv --version`
-should yeild > 13.1.0
-
-[Node installation](https://docs.npmjs.com/getting-started/installing-node)  
-[Virtualenv installation (OSX)](http://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
-
-###Create a New Virtualenv
-For Django 1.9 we're going to use Python 3. 
-```language-bash
-virtualenv -p python3 projectname && cd projectname
-```
-
-make sure we do python3. python 2.4 will throw migration errors. 
-
-Activate the virtualenv using the command:
-`source bin/activate`
-
-###Install Django
-First install Django so that we can use *django-admin.*
-```language-bash
-pip install django
-```
 
 ###Run Startproject
 The [startproject](https://docs.djangoproject.com/en/1.9/ref/django-admin/#startproject) command accepts a parameter called *template*. Replace **projectname** in the command with the name of your project.
@@ -72,6 +70,10 @@ This will tell Django which environment settings file to use; production or deve
 We should still be in the */projectname* directory, so open *../bin/activate* in your editor of choice and paste the following at the bottom of the file. (Again change *projectname* to the name of your project)
 
 ```language-bash
+vim ../bin/activate
+```
+
+```language-bash
 DJANGO_SETTINGS_MODULE="projectname.config.settings_development"
 export DJANGO_SETTINGS_MODULE
 ```
@@ -84,6 +86,7 @@ source ../bin/activate
 **Tip:** Verify the value of DJANGO_SETTINGS_MODULE by echoing it in the terminal:`echo $DJANGO_SETTINGS_MODULE`. It should print: *projectname.config.settings_development*
 
 
+
 ###Install Node Dependencies
 Now we need to install Webpack and Webpack's supporting modules from *package.json*.
 
@@ -93,7 +96,7 @@ npm install
 ```
 
 ###Create an Initial Bundle
-Test our config. This should create `./webpack-stats.json`
+To test our config we can run the build script which should create `./webpack-stats.json`
 
 
 ```language-bash
