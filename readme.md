@@ -1,6 +1,6 @@
 
 # Quickstart
-This is a template that you can use to integrate Webpack into your Django front-end workflow. [http://blog.toymakerlabs.com/getting-started-with-webpack-and-django/](See my article for more details)
+This is a template that you can use to integrate Webpack into your Django front-end workflow. [https://www.toymakerlabs.com/getting-started-with-webpack-and-django/](See my article for more details)
 
 
 ### Development Environment Overview
